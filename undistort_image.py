@@ -1,3 +1,4 @@
+"""Undistors image (reads calibration values from previously genereted .txt files)"""
 import numpy as np
 import cv2
 
