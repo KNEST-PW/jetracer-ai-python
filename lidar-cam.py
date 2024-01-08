@@ -1,7 +1,7 @@
 import os
 from math import cos, sin, pi, floor
 from rplidar import RPLidar
-import camera
+import utils.camera as camera
 import numpy as np
 import cv2
 import threading
