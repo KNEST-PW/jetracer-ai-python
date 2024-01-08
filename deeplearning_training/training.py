@@ -1,10 +1,9 @@
 from time import sleep
 import pygame
+import sys
+sys.path.insert(1,'../utils')
 from nvidia_racecar import NvidiaRacecar
 from camera import CameraJet
-from time import sleep
-from multiprocessing import Process
-import cv2
 
 
 car = NvidiaRacecar()
@@ -39,8 +38,8 @@ while loop:
     car.throttle = silnik
     print(licznik, skret, silnik, sep=";", file=plik)
     frame = cam.read_frame()
-    with open(f"/zdj/zdj{licznik}.jpg", "wb") as file:
-            file.write(cam.read_frame_jpg())
+    with open(f"zdj/zdj{licznik}.jpg", "wb") as file:
+        file.write(cam.read_frame_jpg())
     licznik += 1
     sleep(0.2)
 
