@@ -1,11 +1,15 @@
 from time import sleep
 import pygame
 from nvidia_racecar import NvidiaRacecar
-import datetime
+from camera import CameraJet
+from time import sleep
+from multiprocessing import Process
+import cv2
 
 
 car = NvidiaRacecar()
 pygame.init()
+cam = CameraJet()
 
 # joystick
 while True:
@@ -23,6 +27,7 @@ licznik = 0
 car = NvidiaRacecar()
 skret, silnik = 0, 0
 loop = True
+plik = open("skret_silnik.txt", 'w')
 while loop:
     for event in pygame.event.get():
         skret = round(js.get_axis(0),1)
@@ -32,4 +37,11 @@ while loop:
             loop = False
     car.steering = skret
     car.throttle = silnik
-    print(skret, silnik)
+    print(licznik, skret, silnik, sep=";", file=plik)
+    frame = cam.read_frame()
+    with open(f"/zdj/zdj{licznik}.jpg", "wb") as file:
+            file.write(cam.read_frame_jpg())
+    licznik += 1
+    sleep(0.2)
+
+plik.close()
