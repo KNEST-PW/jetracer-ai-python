@@ -1,3 +1,7 @@
 opencv-python
 rplidar
 pygame
+traitlets
+adafruit-circuitpython-servokit
+Jetson.GPIO
+flask
